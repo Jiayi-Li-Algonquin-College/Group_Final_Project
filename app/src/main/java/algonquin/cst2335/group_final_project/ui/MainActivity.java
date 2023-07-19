@@ -2,6 +2,7 @@ package algonquin.cst2335.group_final_project.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
  */
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding variableBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +29,25 @@ public class MainActivity extends AppCompatActivity {
         variableBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(variableBinding.getRoot());
 
-        TextView myText = variableBinding.myTextView;
-        Button myButton = variableBinding.myButton;
+        variableBinding.Plane.setOnClickListener( clk-> {
+            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            startActivity( nextPage);
+        });
+
+        variableBinding.Trivia.setOnClickListener( clk-> {
+            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            startActivity( nextPage);
+        });
+
+        variableBinding.bear.setOnClickListener( clk-> {
+            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            startActivity( nextPage);
+        });
+
+        variableBinding.Currency.setOnClickListener( clk-> {
+            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            startActivity( nextPage);
+        });
 
     }
 }
