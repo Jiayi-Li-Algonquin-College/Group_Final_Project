@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.Trivia;
+package algonquin.cst2335.group_final_project;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class TriviaActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private String userName;
@@ -102,10 +101,10 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("LoginName", userName);
                 editor.apply();
                 // Show a Toast notification
-                Toast.makeText(MainActivity.this, "Welcome, " + userName + "!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TriviaActivity.this, "Welcome, " + userName + "!", Toast.LENGTH_SHORT).show();
 
-                 //Start the quiz activity with user name and selected topic
-                Intent nextPage = new Intent(MainActivity.this, QuizRoom.class);
+                //Start the quiz activity with user name and selected topic
+                Intent nextPage = new Intent(TriviaActivity.this, QuizRoom.class);
                 startActivity(nextPage);
             }
         });

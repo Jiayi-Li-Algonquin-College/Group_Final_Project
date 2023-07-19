@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.Trivia;
+package algonquin.cst2335.group_final_project;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
