@@ -3,6 +3,8 @@ package algonquin.cst2335.group_final_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 //import androidx.recyclerview.widget.RecyclerView.*;
 import androidx.room.Room;
@@ -11,6 +13,8 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +27,9 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -45,6 +52,11 @@ public class BearImageMainActivity extends AppCompatActivity {
 
     ArrayList<BearImage> images;
 
+//    //new **
+//    private RecyclerView recyclerView;
+//    private BearImageViewModel bearImageViewModel;
+//    private BearImageAdapter bearImageAdapter;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bear_image_main);
@@ -55,15 +67,33 @@ public class BearImageMainActivity extends AppCompatActivity {
         generateButton = findViewById(R.id.bearGenerateButton);
         savedImagesButton = findViewById(R.id.bearViewImagesButton);
 
-//        binding = ActivityBearImageMainBinding.inflate(getLayoutInflater());
-//        View view = binding.getRoot();
+//        //new **
+//        recyclerView = findViewById(R.id.recyclerView);
+
+        binding = ActivityBearImageMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
 //        setContentView(binding.getRoot());
+
+//        //new **
+//        //set up RecyclerView
+//        bearImageAdapter = new BearImageAdapter(new BearImageAdapter.ImageDiff());
+//        recyclerView.setAdapter(bearImageAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+//        //new **
+//        // Set up ViewModel
+//        bearImageViewModel = new ViewModelProvider(this).get(BearImageViewModel.class);
+//        bearImageViewModel.getAllImages().observe(this, images -> {
+//            // Update the cached copy of the images in the adapter.
+//            bearImageAdapter.submitList(images);
+//        });
 
         // Restore the last entered dimensions from SharedPreferences
         SharedPreferences preferences = getSharedPreferences("BearImageGenerator", MODE_PRIVATE);
         widthEditText.setText(preferences.getString("lastWidth", ""));
         heightEditText.setText(preferences.getString("lastHeight", ""));
 
+        //good ##
         generateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,13 +122,13 @@ public class BearImageMainActivity extends AppCompatActivity {
                     runOnUiThread(() -> Toast.makeText(BearImageMainActivity.this, "Image saved", Toast.LENGTH_SHORT).show());
                 }).start();
 
-//                // Use Volley to fetch the image
-//                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-//                ImageRequest imageRequest = new ImageRequest(url,
-//                        response -> imageView.setImageBitmap(response), 0, 0, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565,
-//                        error -> Toast.makeText(MainActivity.this, "Failed to load image", Toast.LENGTH_SHORT).show());
-//
-//                queue.add(imageRequest);
+                // Use Volley to fetch the image
+                RequestQueue queue = Volley.newRequestQueue(BearImageMainActivity.this);
+                ImageRequest imageRequest = new ImageRequest(url,
+                        response -> imageView.setImageBitmap(response), 0, 0, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565,
+                        error -> Toast.makeText(BearImageMainActivity.this, "Failed to load image", Toast.LENGTH_SHORT).show());
+
+                queue.add(imageRequest);
 
                  //When the image is clicked, show a dialog asking if the user wants to save or delete it
                  imageView.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +160,7 @@ public class BearImageMainActivity extends AppCompatActivity {
                  }
                  });}
         });
+        //good ##
 
 //        binding.recycleView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
 //            @NonNull
@@ -226,10 +257,43 @@ public class BearImageMainActivity extends AppCompatActivity {
 //            }
 //        }
 
+//        //new **
+//        // Generate button click listener
+//        generateButton.setOnClickListener(v -> {
+//            String width = widthEditText.getText().toString();
+//            String height = heightEditText.getText().toString();
+//
+//            if (!width.isEmpty() && !height.isEmpty()) {
+//                String url = "https://placebear.com/" + width + "/" + height;
+//                loadImage(url);
+//            } else {
+//                Toast.makeText(this, "Please specify width and height", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        // Save button click listener
+//        savedImagesButton.setOnClickListener(v -> {
+//            String width = widthEditText.getText().toString();
+//            String height = heightEditText.getText().toString();
+//
+//            if (!width.isEmpty() && !height.isEmpty()) {
+//                String url = "https://placebear.com/" + width + "/" + height;
+//                Image image = new Image(url);
+//                bearImageViewModel.insert(image);
+//                Toast.makeText(this, "Image saved", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(this, "No image to save", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    private void loadImage(String url) {
+//        Picasso.get().load(url).into(imageView);
+//    }
 
-        savedImagesButton.setOnClickListener(v -> {
-            Intent intent = new Intent(BearImageMainActivity.this, SavedImageActivity.class);
-            startActivity(intent);
-        });
+    //good ##
+//        savedImagesButton.setOnClickListener(v -> {
+//            Intent intent = new Intent(BearImageMainActivity.this, SavedImageActivity.class);
+//            startActivity(intent);
+//        });
     }
 }

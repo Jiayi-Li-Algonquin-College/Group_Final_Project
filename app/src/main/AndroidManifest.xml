@@ -14,15 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Group_Final_Project"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".BearImageAdapter"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity
+            android:name=".BearImageAdapter"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SavedImageActivity"
             android:exported="true">
