@@ -1,21 +1,13 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.Trivia;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import algonquin.cst2335.group_final_project.data.QuizRoomViewModel;
 import algonquin.cst2335.group_final_project.databinding.ActivityQuizRoomBinding;

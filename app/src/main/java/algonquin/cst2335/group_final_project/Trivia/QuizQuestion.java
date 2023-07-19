@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.Trivia;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

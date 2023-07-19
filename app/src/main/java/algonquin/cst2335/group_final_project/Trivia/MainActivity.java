@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.Trivia;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,10 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,10 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
