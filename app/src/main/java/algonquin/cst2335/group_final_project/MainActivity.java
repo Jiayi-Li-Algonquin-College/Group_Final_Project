@@ -1,4 +1,6 @@
-package algonquin.cst2335.group_final_project.ui;
+//package algonquin.cst2335.group_final_project.ui;
+
+package algonquin.cst2335.group_final_project; // this line should be deleted if merged
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,22 +32,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(variableBinding.getRoot());
 
         variableBinding.Plane.setOnClickListener( clk-> {
-            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            Intent nextPage = new Intent( MainActivity.this, BearImageMainActivity.class);
             startActivity( nextPage);
         });
 
         variableBinding.Trivia.setOnClickListener( clk-> {
-            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            Intent nextPage = new Intent( MainActivity.this, BearImageMainActivity.class);
             startActivity( nextPage);
         });
 
         variableBinding.bear.setOnClickListener( clk-> {
-            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            Intent nextPage = new Intent( MainActivity.this, BearImageMainActivity.class);
             startActivity( nextPage);
         });
-
+//
         variableBinding.Currency.setOnClickListener( clk-> {
-            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            Intent nextPage = new Intent( MainActivity.this, BearImageMainActivity.class);
             startActivity( nextPage);
         });
 
