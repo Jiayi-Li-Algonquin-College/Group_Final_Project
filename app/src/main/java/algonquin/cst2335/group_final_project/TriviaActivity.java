@@ -14,11 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
+import algonquin.cst2335.group_final_project.databinding.ActivityTriviaBinding;
 
 public class TriviaActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private ActivityTriviaBinding binding;
     private String userName;
     Snackbar snackbar;
 
@@ -32,7 +32,7 @@ public class TriviaActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {;
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.item_1) {
             showHelpDialog();
         }
@@ -51,7 +51,7 @@ public class TriviaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityTriviaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.myToolbar);
 

@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Group_Final_Project"
         tools:targetApi="31" >
-        <activity
-            android:name=".TriviaActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true" >
@@ -25,8 +23,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".TriviaActivity"
+            android:label="TriviaActivity"
+            android:exported="false"/>
+        <activity
             android:name=".QuizRoom"
-            android:label="Quiz Room" />
+            android:label="Quiz Room"
+            android:exported="false"/>
     </application>
 
 </manifest>
