@@ -70,8 +70,8 @@ public class BearImageMainActivity extends AppCompatActivity {
 //        //new **
 //        recyclerView = findViewById(R.id.recyclerView);
 
-        binding = ActivityBearImageMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
+//        binding = ActivityBearImageMainBinding.inflate(getLayoutInflater());
+//        View view = binding.getRoot();
 //        setContentView(binding.getRoot());
 
 //        //new **
@@ -137,7 +137,7 @@ public class BearImageMainActivity extends AppCompatActivity {
                      new AlertDialog.Builder(BearImageMainActivity.this)
                              .setTitle("Image Options")
                              .setMessage("Do you want to delete this image?")
-                             .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                             .setPositiveButton("NO", new DialogInterface.OnClickListener() {
                                  public void onClick(DialogInterface dialog, int which) {
                                      // Save the image to the database
                                      new Thread(() -> {
@@ -146,7 +146,7 @@ public class BearImageMainActivity extends AppCompatActivity {
                                      }).start();
                                  }
                              })
-                             .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                             .setNegativeButton("YES", new DialogInterface.OnClickListener() {
                                  public void onClick(DialogInterface dialog, int which) {
                                      // Delete the image from the database
                                      new Thread(() -> {
@@ -291,9 +291,9 @@ public class BearImageMainActivity extends AppCompatActivity {
 //    }
 
     //good ##
-//        savedImagesButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(BearImageMainActivity.this, SavedImageActivity.class);
-//            startActivity(intent);
-//        });
+        savedImagesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(BearImageMainActivity.this, SavedImageActivity.class);
+            startActivity(intent);
+        });
     }
 }
