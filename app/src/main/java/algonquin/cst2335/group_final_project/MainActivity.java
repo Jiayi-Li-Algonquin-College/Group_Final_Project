@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
-import algonquin.cst2335.group_final_project.ui.ChatRoom;
+import algonquin.cst2335.group_final_project.JiayiLi_Flight_Part.FlightRoom;
 
 /**
  * MainActivity class represents an Android activity that allows the user to enter and check a password.
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(variableBinding.getRoot());
 
         variableBinding.Plane.setOnClickListener( clk-> {
-            Intent nextPage = new Intent( MainActivity.this, ChatRoom.class);
+            Intent nextPage = new Intent( MainActivity.this, FlightRoom.class);
             startActivity( nextPage);
         });
 

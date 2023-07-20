@@ -1,11 +1,8 @@
-package algonquin.cst2335.group_final_project.ui;
+package algonquin.cst2335.group_final_project.JiayiLi_Flight_Part;
 
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,23 +22,22 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import algonquin.cst2335.group_final_project.R;
-import algonquin.cst2335.group_final_project.data.ChatRoomViewModel;
+import algonquin.cst2335.group_final_project.data.FlightRoomViewModel;
 import algonquin.cst2335.group_final_project.databinding.ActivityChatRoomBinding;
-import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
 import algonquin.cst2335.group_final_project.databinding.ReceiveMessageBinding;
 import algonquin.cst2335.group_final_project.databinding.SentMessageBinding;
 
-public class ChatRoom extends AppCompatActivity {
+public class FlightRoom extends AppCompatActivity {
 
 
 
     public ActivityChatRoomBinding binding;
-    public ArrayList<ChatMessage> messages = new ArrayList<>();
-    public ChatRoomViewModel chatModel ;
+    public ArrayList<FlightMessage> messages = new ArrayList<>();
+    public FlightRoomViewModel chatModel ;
     public RecyclerView.Adapter myAdapter;
     SharedPreferences prefs;
     public int postionTemp;
-    public ChatMessage selected;
+    public FlightMessage selected;
 
 
 
@@ -53,7 +47,7 @@ public class ChatRoom extends AppCompatActivity {
 
         //这两个必须放在onCreate里😅😅😅😅😅😅😅😅😅😅😅😅😅😅😅😅😅😅
         MessageDatabase db = Room.databaseBuilder(getApplicationContext(), MessageDatabase.class, "database-name").build();
-        ChatMessageDAO mDAO = db.cmDAO();
+        FlightMessageDAO mDAO = db.cmDAO();
         prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String searchHistory = prefs.getString("searchHistory", "");
 
@@ -61,12 +55,12 @@ public class ChatRoom extends AppCompatActivity {
         binding = ActivityChatRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        chatModel = new ViewModelProvider(this).get(ChatRoomViewModel.class);
+        chatModel = new ViewModelProvider(this).get(FlightRoomViewModel.class);
         messages = chatModel.messages.getValue();
 
         if(messages == null)
         {
-            chatModel.messages.postValue( messages = new ArrayList<ChatMessage>());
+            chatModel.messages.postValue( messages = new ArrayList<FlightMessage>());
         }
         binding.showListButton.setOnClickListener(clickButton->{
 
@@ -99,7 +93,7 @@ public class ChatRoom extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
             String currentDateandTime = sdf.format(new Date());
 
-            ChatMessage chatMessage = new ChatMessage(message, currentDateandTime, true);
+            FlightMessage flightMessage = new FlightMessage(message, currentDateandTime, true);
             /*------------------------------------------------------------------
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(() ->
@@ -109,7 +103,7 @@ public class ChatRoom extends AppCompatActivity {
             */
             //------------------------------------------------------------------
 
-            messages.add(chatMessage);
+            messages.add(flightMessage);
             myAdapter.notifyDataSetChanged();
             binding.textInput.setText("");
         });
@@ -118,11 +112,11 @@ public class ChatRoom extends AppCompatActivity {
             String message = binding.textInput.getText().toString();
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
             String currentDateandTime = sdf.format(new Date());
-            ChatMessage chatMessage = new ChatMessage(message, currentDateandTime, false);
+            FlightMessage flightMessage = new FlightMessage(message, currentDateandTime, false);
 
 
 
-            messages.add(chatMessage);
+            messages.add(flightMessage);
             myAdapter.notifyDataSetChanged();
             binding.textInput.setText("");
         });
@@ -145,9 +139,9 @@ public class ChatRoom extends AppCompatActivity {
 
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
-                ChatMessage chatMessage = messages.get(position);
-                holder.messageText.setText(chatMessage.getMessage());
-                holder.timeText.setText(chatMessage.getTimeSent());
+                FlightMessage flightMessage = messages.get(position);
+                holder.messageText.setText(flightMessage.getMessage());
+                holder.timeText.setText(flightMessage.getTimeSent());
             }
 
             @Override
@@ -157,8 +151,8 @@ public class ChatRoom extends AppCompatActivity {
 
             @Override
             public int getItemViewType(int position) {
-                ChatMessage chatMessage = messages.get(position);
-                if (chatMessage.getIsSentButton()) {
+                FlightMessage flightMessage = messages.get(position);
+                if (flightMessage.getIsSentButton()) {
                     return 0;
                 } else {
                     return 1;

@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.ui;
+package algonquin.cst2335.group_final_project.JiayiLi_Flight_Part;
 
 
 
@@ -12,8 +12,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -21,14 +19,14 @@ import java.util.concurrent.Executors;
 import algonquin.cst2335.group_final_project.databinding.DetailsLayoutBinding;
 
 public class MessageDetailsFragment extends Fragment {
-    ChatMessage selected;
-    ArrayList<ChatMessage> messages;
+    FlightMessage selected;
+    ArrayList<FlightMessage> messages;
     public int postionTemp;
     public RecyclerView.Adapter myAdapter;
-    ChatMessageDAO mDAO;
+    FlightMessageDAO mDAO;
 
 
-    public MessageDetailsFragment (ChatMessage m, ArrayList<ChatMessage> messages, int postionTemp, RecyclerView.Adapter myAdapter, ChatMessageDAO mDAO) {
+    public MessageDetailsFragment (FlightMessage m, ArrayList<FlightMessage> messages, int postionTemp, RecyclerView.Adapter myAdapter, FlightMessageDAO mDAO) {
 
         selected = m;
         this.messages = messages;
