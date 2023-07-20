@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.ui;
+package algonquin.cst2335.group_final_project.flight;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

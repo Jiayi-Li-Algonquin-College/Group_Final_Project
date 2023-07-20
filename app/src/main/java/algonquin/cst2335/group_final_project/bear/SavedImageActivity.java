@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.bear;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import java.util.List;
+
+import algonquin.cst2335.group_final_project.R;
 
 public class SavedImageActivity extends AppCompatActivity {
 
