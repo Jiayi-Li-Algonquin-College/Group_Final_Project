@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import algonquin.cst2335.group_final_project.bear.BearImageMainActivity;
 import algonquin.cst2335.group_final_project.currency.CurrencyConvertActivity;
+import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
 import algonquin.cst2335.group_final_project.flight.ChatRoom;
 import algonquin.cst2335.group_final_project.trivia.TriviaActivity;
 
