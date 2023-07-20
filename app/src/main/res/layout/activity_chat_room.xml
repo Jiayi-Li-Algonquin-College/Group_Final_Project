@@ -33,7 +33,7 @@
                 android:id="@+id/sendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SEND"
+                android:text="Retrieve"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"></Button>
 
