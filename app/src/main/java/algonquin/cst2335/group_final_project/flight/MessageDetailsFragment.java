@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.ui;
+package algonquin.cst2335.group_final_project.flight;
 
 
 
@@ -12,13 +12,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
-import algonquin.cst2335.group_final_project.databinding.DetailsLayoutBinding;
 
 public class MessageDetailsFragment extends Fragment {
     ChatMessage selected;

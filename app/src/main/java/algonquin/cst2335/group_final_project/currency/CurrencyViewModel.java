@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.currency;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
