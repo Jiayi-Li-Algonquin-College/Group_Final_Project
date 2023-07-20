@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import algonquin.cst2335.group_final_project.R;
+import algonquin.cst2335.group_final_project.databinding.ActivityTriviaBinding;
 
 public class TriviaActivity extends AppCompatActivity {
 

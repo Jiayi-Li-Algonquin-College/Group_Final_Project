@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import algonquin.cst2335.group_final_project.databinding.DetailsLayoutBinding;
+
 public class MessageDetailsFragment extends Fragment {
     ChatMessage selected;
     ArrayList<ChatMessage> messages;
