@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity( nextPage);
         });
 
-//        variableBinding.bear.setOnClickListener( clk-> {
-//            Intent nextPage = new Intent( MainActivity.this, BearImageMainActivity.class);
-//            startActivity( nextPage);
-//        });
+        variableBinding.bear.setOnClickListener( clk-> {
+            Intent nextPage = new Intent( MainActivity.this, BearImageMainActivity.class);
+            startActivity( nextPage);
+        });
 
         variableBinding.Currency.setOnClickListener( clk-> {
             Intent nextPage = new Intent( MainActivity.this, CurrencyConvertActivity.class);
