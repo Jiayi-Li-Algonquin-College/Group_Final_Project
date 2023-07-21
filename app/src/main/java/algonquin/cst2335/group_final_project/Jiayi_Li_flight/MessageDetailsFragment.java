@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.ui;
+package algonquin.cst2335.group_final_project.Jiayi_Li_flight;
 
 
 
@@ -11,8 +11,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executor;

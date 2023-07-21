@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.Jiebo_Peng_currency;
 public class OneCurrencyConvert {
         String fromCurrency;
         String toCurrency;

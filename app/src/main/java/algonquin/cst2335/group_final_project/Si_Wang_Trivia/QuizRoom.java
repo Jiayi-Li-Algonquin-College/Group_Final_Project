@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.Si_Wang_Trivia;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import algonquin.cst2335.group_final_project.data.QuizRoomViewModel;
 import algonquin.cst2335.group_final_project.databinding.ActivityQuizRoomBinding;
 
 public class QuizRoom extends AppCompatActivity {

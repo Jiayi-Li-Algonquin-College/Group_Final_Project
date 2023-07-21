@@ -1,11 +1,8 @@
-package algonquin.cst2335.group_final_project.ui;
+package algonquin.cst2335.group_final_project.Jiayi_Li_flight;
 
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,9 +22,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import algonquin.cst2335.group_final_project.R;
-import algonquin.cst2335.group_final_project.data.ChatRoomViewModel;
 import algonquin.cst2335.group_final_project.databinding.ActivityChatRoomBinding;
-import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
 import algonquin.cst2335.group_final_project.databinding.ReceiveMessageBinding;
 import algonquin.cst2335.group_final_project.databinding.SentMessageBinding;
 

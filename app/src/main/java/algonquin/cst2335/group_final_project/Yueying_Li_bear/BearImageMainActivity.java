@@ -1,42 +1,31 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.Yueying_Li_bear;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 //import androidx.recyclerview.widget.RecyclerView.*;
 import androidx.room.Room;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
+import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityBearImageMainBinding;
-import algonquin.cst2335.group_final_project.databinding.ActivitySavedImageBinding;
 //import algonquin.cst2335.group_final_project.databinding.*;
 //import algonquin.cst2335.group_final_project.databinding.ActivityChatRoomBinding;
 

@@ -1,11 +1,9 @@
-package algonquin.cst2335.group_final_project.data;
+package algonquin.cst2335.group_final_project.Si_Wang_Trivia;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
-
-import algonquin.cst2335.group_final_project.QuizQuestion;
 
 public class QuizRoomViewModel extends ViewModel {
     public MutableLiveData<ArrayList<QuizQuestion>> quizQuestions = new MutableLiveData<>();

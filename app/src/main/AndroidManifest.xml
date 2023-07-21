@@ -29,7 +29,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.Group_Final_Project" >
         <activity
-            android:name="algonquin.cst2335.group_final_project.ui.ChatRoom"
+            android:name="algonquin.cst2335.group_final_project.Jiayi_Li_flight.ChatRoom"
             android:exported="false" >
 
             <!-- <intent-filter> -->
@@ -38,7 +38,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name="algonquin.cst2335.group_final_project.CurrencyConvertActivity"
+            android:name="algonquin.cst2335.group_final_project.Jiebo_Peng_currency.CurrencyConvertActivity"
             android:exported="false" >
 
             <!-- <intent-filter> -->
@@ -49,11 +49,11 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name="algonquin.cst2335.group_final_project.SavedImageActivity"
+            android:name="algonquin.cst2335.group_final_project.Yueying_Li_bear.SavedImageActivity"
             android:exported="true" >
         </activity>
         <activity
-            android:name="algonquin.cst2335.group_final_project.BearImageMainActivity"
+            android:name="algonquin.cst2335.group_final_project.Yueying_Li_bear.BearImageMainActivity"
             android:exported="true" >
         </activity>
         <activity
@@ -66,11 +66,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="algonquin.cst2335.group_final_project.TriviaActivity"
+            android:name="algonquin.cst2335.group_final_project.Si_Wang_Trivia.TriviaActivity"
             android:exported="false"
             android:label="TriviaActivity" />
         <activity
-            android:name="algonquin.cst2335.group_final_project.QuizRoom"
+            android:name="algonquin.cst2335.group_final_project.Si_Wang_Trivia.QuizRoom"
             android:exported="false"
             android:label="Quiz Room" />
 

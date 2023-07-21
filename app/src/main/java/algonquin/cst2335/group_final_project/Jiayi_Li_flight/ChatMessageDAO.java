@@ -1,9 +1,8 @@
-package algonquin.cst2335.group_final_project.ui;
+package algonquin.cst2335.group_final_project.Jiayi_Li_flight;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;

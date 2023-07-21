@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.Jiebo_Peng_currency;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
+import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityCurrencyConvertBinding;
 import algonquin.cst2335.group_final_project.databinding.OneCurrencyConvertBinding;
 
