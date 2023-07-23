@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    package="algonquin.cst2335.group_final_project"
+    android:versionCode="1"
+    android:versionName="1.0" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-sdk
+        android:minSdkVersion="22"
+        android:targetSdkVersion="33" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <permission
+        android:name="algonquin.cst2335.group_final_project.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="algonquin.cst2335.group_final_project.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:debuggable="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Group_Final_Project"
-
-        tools:targetApi="31">
-
+        android:testOnly="true"
+        android:theme="@style/Theme.Group_Final_Project" >
         <activity
-            android:name=".flight.ChatRoom"
-            android:exported="false">
+            android:name="algonquin.cst2335.group_final_project.Jiayi_Li_flight.ChatRoom"
+            android:exported="false" >
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-
-
-        <activity
-            android:name=".currency.CurrencyConvertActivity"
-            android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".bear.SavedImageActivity"
-            android:exported="true">
+            android:name="algonquin.cst2335.group_final_project.Jiebo_Peng_currency.CurrencyConvertActivity"
+            android:exported="false" >
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".bear.BearImageMainActivity"
-            android:exported="true">
+            android:name="algonquin.cst2335.group_final_project.Yueying_Li_bear.SavedImageActivity"
+            android:exported="true" >
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="algonquin.cst2335.group_final_project.Yueying_Li_bear.BearImageMainActivity"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="algonquin.cst2335.group_final_project.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,15 +65,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="algonquin.cst2335.group_final_project.Si_Wang_Trivia.TriviaActivity"
+            android:exported="false"
+            android:label="TriviaActivity" />
+        <activity
+            android:name="algonquin.cst2335.group_final_project.Si_Wang_Trivia.QuizRoom"
+            android:exported="false"
+            android:label="Quiz Room" />
 
-        <activity
-            android:name=".trivia.TriviaActivity"
-            android:label="TriviaActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".trivia.QuizRoom"
-            android:label="Quiz Room"
-            android:exported="false"/>
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false" />
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:authorities="algonquin.cst2335.group_final_project.com.squareup.picasso"
+            android:exported="false" />
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="algonquin.cst2335.group_final_project.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+        </provider>
     </application>
 
 </manifest>

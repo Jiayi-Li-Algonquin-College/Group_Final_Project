@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bear.BearImageAdapter">
+    tools:context=".Yueying_Li_bear.BearImageAdapter">
 
     <ImageView
         android:id="@+id/bearListImageView"

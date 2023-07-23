@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import algonquin.cst2335.group_final_project.bear.BearImageMainActivity;
-import algonquin.cst2335.group_final_project.currency.CurrencyConvertActivity;
+import algonquin.cst2335.group_final_project.Yueying_Li_bear.BearImageMainActivity;
+import algonquin.cst2335.group_final_project.Jiebo_Peng_currency.CurrencyConvertActivity;
+import algonquin.cst2335.group_final_project.Jiayi_Li_flight.ChatRoom;
+import algonquin.cst2335.group_final_project.Si_Wang_Trivia.TriviaActivity;
 import algonquin.cst2335.group_final_project.databinding.ActivityMainBinding;
-import algonquin.cst2335.group_final_project.flight.ChatRoom;
-import algonquin.cst2335.group_final_project.trivia.TriviaActivity;
 
 /**
  * MainActivity class represents an Android activity that allows the user to enter and check a password.

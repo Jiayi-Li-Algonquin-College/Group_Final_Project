@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.trivia;
+package algonquin.cst2335.group_final_project.Si_Wang_Trivia;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.bear;
+package algonquin.cst2335.group_final_project.Yueying_Li_bear;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +26,6 @@ import java.util.ArrayList;
 
 import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityBearImageMainBinding;
-import algonquin.cst2335.group_final_project.databinding.ActivitySavedImageBinding;
 //import algonquin.cst2335.group_final_project.databinding.*;
 //import algonquin.cst2335.group_final_project.databinding.ActivityChatRoomBinding;
 

@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.bear;
+package algonquin.cst2335.group_final_project.Yueying_Li_bear;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import algonquin.cst2335.group_final_project.R;
-import algonquin.cst2335.group_final_project.databinding.ActivityBearImageAdapterBinding;
 
 public class BearImageAdapter extends RecyclerView.Adapter<BearImageAdapter.ViewHolder> {
 

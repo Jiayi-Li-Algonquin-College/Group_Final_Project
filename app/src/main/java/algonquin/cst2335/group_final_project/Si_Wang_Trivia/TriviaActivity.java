@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.trivia;
+package algonquin.cst2335.group_final_project.Si_Wang_Trivia;
 
 import android.content.Context;
 import android.content.Intent;

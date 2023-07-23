@@ -1,4 +1,4 @@
-package algonquin.cst2335.group_final_project.flight;
+package algonquin.cst2335.group_final_project.Jiayi_Li_flight;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +17,7 @@ import java.util.concurrent.Executors;
 
 
 import algonquin.cst2335.group_final_project.databinding.DetailsLayoutDeleteButtonBinding;
+
 public class SavedMessageDetailsFragment  extends Fragment {
     ChatMessage selected;
     ArrayList<ChatMessage> messages;
