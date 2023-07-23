@@ -32,7 +32,7 @@ public class QuizRoom extends AppCompatActivity {
         String savedUserName = prefs.getString("LoginName", "");
         binding.nameTextView.setText(savedUserName);
 
-        binding.recycleView.setAdapter(new RecyclerView.Adapter<MyRowHolder>() );
+  //      binding.recycleView.setAdapter(new RecyclerView.Adapter<MyRowHolder>() );
 //
         class MyRowHolder extends RecyclerView.ViewHolder {
             public MyRowHolder(@NonNull View itemView) {
