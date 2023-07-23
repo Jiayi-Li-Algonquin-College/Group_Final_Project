@@ -2,7 +2,9 @@ package algonquin.cst2335.group_final_project.trivia;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,12 +32,12 @@ public class QuizRoom extends AppCompatActivity {
         String savedUserName = prefs.getString("LoginName", "");
         binding.nameTextView.setText(savedUserName);
 
-//        binding.recycleView.setAdapter(new RecyclerView.Adapter<MyRowHolder>() )；
+        binding.recycleView.setAdapter(new RecyclerView.Adapter<MyRowHolder>() );
 //
-//        class MyRowHolder extends RecyclerView.ViewHolder {
-//            public MyRowHolder(@NonNull View itemView) {
-//                super(itemView);
-//            }
+        class MyRowHolder extends RecyclerView.ViewHolder {
+            public MyRowHolder(@NonNull View itemView) {
+                super(itemView);
+            }
 //        }
 //        //initialize to the ViewModel arrayList:
 //        quizQuestions = quizModel.quizQuestions.getValue();
@@ -67,3 +69,4 @@ public class QuizRoom extends AppCompatActivity {
 //            Toast.makeText(this, resultMessage, Toast.LENGTH_LONG).show();
         }
     }
+}
