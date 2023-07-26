@@ -16,15 +16,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import algonquin.cst2335.group_final_project.MainActivity;
 import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityChatRoomBinding;
 import algonquin.cst2335.group_final_project.databinding.ReceiveMessageBinding;
@@ -41,7 +52,8 @@ public class ChatRoom extends AppCompatActivity {
     SharedPreferences prefs;
     public int postionTemp;
     public ChatMessage selected;
-
+    protected RequestQueue queue;
+    public String stringURL;
 
 
     @Override
@@ -115,19 +127,59 @@ public class ChatRoom extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
             String currentDateandTime = sdf.format(new Date());
 
-            ChatMessage chatMessage = new ChatMessage(message, currentDateandTime, true);
+
+            String airportCode = binding.textInput.getText().toString();
+
+            try {
+                stringURL = "http://api.aviationstack.com/v1/flights?access_key=49303af5d63fb4780a6467075b9d721b&dep_iata=" +
+                URLEncoder.encode(airportCode, "UTF-8");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            queue = Volley.newRequestQueue(this);
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.GET,
+                    stringURL,
+                    null,
+                    response -> {
+                        try {
+                            JSONArray data = response.getJSONArray("data");
+                            JSONObject position0 = data.getJSONObject(0);
+
+                            String flight_status = position0.getString("flight_status");
+
+                            runOnUiThread(() -> {
+                                Toast.makeText(ChatRoom.this, flight_status, Toast.LENGTH_SHORT).show();
+                                ChatMessage chatMessage = new ChatMessage(flight_status, currentDateandTime, true);
+                                messages.add(chatMessage);
+                                myAdapter.notifyDataSetChanged();
+                                binding.textInput.setText("");
+                                    });
+
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    },
+                    error -> {
+                        Toast.makeText(ChatRoom.this, "Error retrieving data", Toast.LENGTH_SHORT).show();
+                    });
+            queue.add(request);
+
+
+
+//            ChatMessage chatMessage = new ChatMessage(airportCode, currentDateandTime, true);
             /*------------------------------------------------------------------
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(() ->
             {
                 mDAO.insertMessage(chatMessage);
-            });
+            });55
             */
             //------------------------------------------------------------------
 
-            messages.add(chatMessage);
-            myAdapter.notifyDataSetChanged();
-            binding.textInput.setText("");
+//            messages.add(chatMessage);
+//            myAdapter.notifyDataSetChanged();
+//            binding.textInput.setText("");
         });
 
         binding.receiveButton.setOnClickListener(click -> {
