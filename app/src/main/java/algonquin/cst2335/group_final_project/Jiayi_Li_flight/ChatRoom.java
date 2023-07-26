@@ -2,6 +2,7 @@ package algonquin.cst2335.group_final_project.Jiayi_Li_flight;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -77,8 +81,27 @@ public class ChatRoom extends AppCompatActivity {
 
         });
 
+        binding.helpButton.setOnClickListener(onononclick -> {
+                    String helpMessage =
+                            "Welcome to our app! Here are some instructions on how to use the interface:\n\n" +
+                            "1. Click on the buttons to explore features.\n" +
+                            "2. Select an item from the list history to view its details.\n" +
+                            "3. Use the back button to go back to the previous screen.\n" +
+                            "4. Click on the show button to see the saved items.\n";
 
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+            builder.setMessage(helpMessage)
+                    .setTitle("Help")
+                    .setPositiveButton( "Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        });
 
         binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
 

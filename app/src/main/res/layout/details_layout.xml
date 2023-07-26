@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="REAL SAVE"
+        android:text="@string/flight_save"
         app:layout_constraintStart_toStartOf="@+id/databaseText"
         app:layout_constraintTop_toBottomOf="@+id/databaseText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

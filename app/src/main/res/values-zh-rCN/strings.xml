@@ -11,4 +11,16 @@
     <string name="from_currency">从</string>
     <string name="to_currency">到</string>
     <string name="converted_amount">换算结果</string>
+
+    <!--Jiayi Li's Flight-->
+    <string name="flight_search">搜索</string>
+    <string name="flight_show_list">列</string>
+    <string name="flight_help">帮助</string>
+    <string name="flight_save">保存</string>
+    <string name="flight_delete">删除</string>
+    <string name="flight_save_toast">您刚刚点击了保存按钮！</string>
+    <!--Jiayi Li's Flight-->
+
+
+
 </resources>
