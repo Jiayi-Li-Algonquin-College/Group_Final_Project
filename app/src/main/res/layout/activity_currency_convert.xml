@@ -6,16 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Jiebo_Peng_currency.CurrencyConvertActivity">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/currencyToolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Currency Converter"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.385"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/currency_title" />
 
     <TextView
         android:id="@+id/from"
@@ -23,9 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="From"
+        android:text="@string/from_currency"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/currencyToolbar" />
 
     <Spinner
         android:id="@+id/fromCurrency"
@@ -40,7 +37,7 @@
         android:id="@+id/to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To"
+        android:text="@string/to_currency"
         app:layout_constraintEnd_toStartOf="@+id/toCurrency"
         app:layout_constraintStart_toEndOf="@+id/fromCurrency"
         app:layout_constraintTop_toTopOf="@+id/fromCurrency" />
@@ -58,13 +55,10 @@
         android:id="@+id/enterAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="Enter the Amount"
-        app:layout_constraintBottom_toBottomOf="@+id/amountText"
-        app:layout_constraintEnd_toStartOf="@+id/amountText"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="65dp"
+        android:text="@string/input_amount"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/amountText" />
+        app:layout_constraintTop_toBottomOf="@+id/currencyToolbar" />
 
     <EditText
         android:id="@+id/amountText"
@@ -78,16 +72,33 @@
         android:text=""
         app:layout_constraintEnd_toStartOf="@+id/convertButton"
         app:layout_constraintStart_toEndOf="@+id/enterAmount"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/currencyToolbar" />
 
     <Button
         android:id="@+id/convertButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
-        android:text="CONVERT"
+        android:text="@string/convert_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/amountText" />
+
+    <TextView
+        android:id="@+id/convertedAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/converted_amount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amountText" />
+
+    <TextView
+        android:id="@+id/convertedResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/convertedAmount"
+        app:layout_constraintStart_toStartOf="@+id/amountText" />
 
     <Button
         android:id="@+id/saveButton"
@@ -95,16 +106,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="SAVE"
+        android:text="@string/save_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterAmount" />
+        app:layout_constraintTop_toBottomOf="@+id/convertedAmount" />
 
     <Button
         android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="UPDATE"
+        android:text="@string/update_button"
         app:layout_constraintStart_toEndOf="@+id/saveButton"
         app:layout_constraintTop_toTopOf="@+id/saveButton" />
 

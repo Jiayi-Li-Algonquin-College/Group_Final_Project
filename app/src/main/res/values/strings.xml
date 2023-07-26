@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Trivia Question Game!</string>
+    <string name="combine_app_name">CST2335 Group Final Project</string>
+    <string name="currency_title">Currency Converter</string>
+    <string name="input_amount">Enter the Amount</string>
+    <string name="convert_button">CONVERT</string>
+    <string name="save_button">SAVE</string>
+    <string name="update_button">UPDATE</string>
+    <string name="help">Help</string>
+    <string name="from_currency">From</string>
+    <string name="to_currency">To</string>
+    <string name="converted_amount">Converted Result</string>
 </resources>
