@@ -54,6 +54,7 @@ public class ChatRoom extends AppCompatActivity {
     public ChatMessage selected;
     protected RequestQueue queue;
     public String stringURL;
+    String airportCode;
 
 
     @Override
@@ -128,14 +129,11 @@ public class ChatRoom extends AppCompatActivity {
             String currentDateandTime = sdf.format(new Date());
 
 
-            String airportCode = binding.textInput.getText().toString();
+            airportCode = binding.textInput.getText().toString();
 
-            try {
-                stringURL = "http://api.aviationstack.com/v1/flights?access_key=49303af5d63fb4780a6467075b9d721b&dep_iata=" +
-                URLEncoder.encode(airportCode, "UTF-8");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            stringURL = "http://api.aviationstack.com/v1/flights?access_key=49303af5d63fb4780a6467075b9d721b&dep_iata=" + airportCode;
+
             queue = Volley.newRequestQueue(this);
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.GET,
@@ -143,8 +141,8 @@ public class ChatRoom extends AppCompatActivity {
                     null,
                     response -> {
                         try {
-                            JSONArray data = response.getJSONArray("data");
-                            JSONObject position0 = data.getJSONObject(0);
+                            JSONArray dataArray = response.getJSONArray("data");
+                            JSONObject position0 = dataArray.getJSONObject(0);
 
                             String flight_status = position0.getString("flight_status");
 
@@ -167,7 +165,7 @@ public class ChatRoom extends AppCompatActivity {
 
 
 
-//            ChatMessage chatMessage = new ChatMessage(airportCode, currentDateandTime, true);
+//            ChatM988essage chatMessage = new ChatMessage(airportCode, currentDateandTime, true);
             /*------------------------------------------------------------------
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(() ->
