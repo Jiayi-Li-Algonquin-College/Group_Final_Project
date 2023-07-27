@@ -1,28 +1,26 @@
-package algonquin.cst2335.group_final_project;
+package algonquin.cst2335.group_final_project.Yueying_Li_bear;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 //import androidx.recyclerview.widget.RecyclerView.*;
 import androidx.room.Room;
 
-import android.app.Activity;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -32,11 +30,10 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.Objects;
 
+import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityBearImageMainBinding;
-import algonquin.cst2335.group_final_project.databinding.ActivitySavedImageBinding;
 //import algonquin.cst2335.group_final_project.databinding.*;
 //import algonquin.cst2335.group_final_project.databinding.ActivityChatRoomBinding;
 
@@ -47,8 +44,9 @@ public class BearImageMainActivity extends AppCompatActivity {
     private ImageView imageView;
     private Button generateButton;
     private Button savedImagesButton;
-    private RecyclerView.Adapter myAdapter;
-    private ActivityBearImageMainBinding binding;
+
+//    private RecyclerView.Adapter myAdapter;
+//    private ActivityBearImageMainBinding binding;
 
     ArrayList<BearImage> images;
 
@@ -93,7 +91,14 @@ public class BearImageMainActivity extends AppCompatActivity {
         widthEditText.setText(preferences.getString("lastWidth", ""));
         heightEditText.setText(preferences.getString("lastHeight", ""));
 
-        //good ##
+        // Hide the ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
         generateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,40 +137,104 @@ public class BearImageMainActivity extends AppCompatActivity {
 
                  //When the image is clicked, show a dialog asking if the user wants to save or delete it
                  imageView.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
-                     new AlertDialog.Builder(BearImageMainActivity.this)
-                             .setTitle("Image Options")
-                             .setMessage("Do you want to delete this image?")
-                             .setPositiveButton("NO", new DialogInterface.OnClickListener() {
-                                 public void onClick(DialogInterface dialog, int which) {
-                                     // Save the image to the database
-                                     new Thread(() -> {
-                                         BearImageDAO.insert(new BearImage(url));
-                                         runOnUiThread(() -> Toast.makeText(BearImageMainActivity.this, "Image saved", Toast.LENGTH_SHORT).show());
-                                     }).start();
-                                 }
-                             })
-                             .setNegativeButton("YES", new DialogInterface.OnClickListener() {
-                                 public void onClick(DialogInterface dialog, int which) {
-                                     // Delete the image from the database
-                                     new Thread(() -> {
-                                         BearImageDAO.deleteBearImage(new BearImage(url));
-                                         runOnUiThread(() -> Toast.makeText(BearImageMainActivity.this, "Image deleted", Toast.LENGTH_SHORT).show());
-                                     }).start();
-                                 }
-                             })
-                             .setNeutralButton("Cancel", null)
-                             .show();
-                 }
-                 });}
-        });
-        //good ##
+                     @Override
+                     public void onClick(View v) {
+                         new AlertDialog.Builder(BearImageMainActivity.this)
+                                 .setTitle("Image Options")
+                                 .setMessage("Do you want to delete this image?")
+                                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                     public void onClick(DialogInterface dialog, int which) {
+                                         // Handler for undo operation
+                                         final Handler handler = new Handler();
+                                         final Runnable runnable = new Runnable() {
+                                             @Override
+                                             public void run() {
+                                                 // Delete the image from the database
+                                                 new Thread(() -> {
+                                                     BearImageDAO.deleteBearImage(new BearImage(url));
+                                                     runOnUiThread(() -> Toast.makeText(BearImageMainActivity.this, "Image deleted", Toast.LENGTH_SHORT).show());
+                                                 }).start();
+                                             }
+                                         };
 
-    //good ##
+                                         // Post the task to run after 3 seconds (3000 ms)
+                                         handler.postDelayed(runnable, 3000);
+
+                                         Snackbar snackbar = Snackbar.make(v, "Image will be deleted", Snackbar.LENGTH_LONG);
+                                         snackbar.setAction("UNDO", new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View v) {
+                                                 handler.removeCallbacks(runnable);
+                                                 Toast.makeText(BearImageMainActivity.this, "Image delete operation cancelled", Toast.LENGTH_SHORT).show();
+                                             }
+                                         });
+                                         snackbar.setDuration(10000); // Here 10000 milliseconds is 10 seconds.
+                                         snackbar.show();
+//                                         // Save the image to the database
+//                                         new Thread(() -> {
+//                                             BearImageDAO.insert(new BearImage(url));
+//                                             runOnUiThread(() -> Toast.makeText(BearImageMainActivity.this, "Image deleted", Toast.LENGTH_SHORT).show());
+//                                         }).start();
+                                     }
+                                 })
+                                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                     public void onClick(DialogInterface dialog, int which) {
+                                         // Save the image to the database
+                                         new Thread(() -> {
+                                             BearImageDAO.insert(new BearImage(url));
+                                             runOnUiThread(() -> Toast.makeText(BearImageMainActivity.this, "Image saved", Toast.LENGTH_SHORT).show());
+                                         }).start();
+                                         // Delete the image from the database
+//                                         new Thread(() -> {
+//                                             BearImageDAO.deleteBearImage(new BearImage(url));
+//                                             runOnUiThread(() -> Toast.makeText(BearImageMainActivity.this, "Image saved", Toast.LENGTH_SHORT).show());
+//                                         }).start();
+                                     }
+                                 })
+                                 .setNeutralButton("Cancel", null)
+                                 .show();
+                     }
+                 });
+            }
+        });
+
         savedImagesButton.setOnClickListener(v -> {
             Intent intent = new Intent(BearImageMainActivity.this, SavedImageActivity.class);
             startActivity(intent);
         });
+    }
+
+    // Inflate the menu; this adds items to the action bar if it is present.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.bear_menu, menu);
+        return true;
+    }
+
+    // Handle action bar item clicks here. The action bar will automatically handle clicks on the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.bear_help) {
+            showHelpDialog();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+//        switch (item.getItemId()) {
+//            case R.id.bear_help:
+//                showHelpDialog();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void showHelpDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.bear_help_title)
+                .setMessage(R.string.bear_help_message)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
     }
 }
