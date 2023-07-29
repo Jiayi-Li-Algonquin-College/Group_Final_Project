@@ -2,26 +2,80 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".Jiebo_Peng_currency.CurrencyConvertActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/money" />
-
     <TextView
-        android:id="@+id/message"
+        android:id="@+id/fromCurrencyAmountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Message goes here"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:text="From Amount"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fromCurrencyImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fromCurrencyAmountText"
+        app:srcCompat="@drawable/cad" />
+
+    <TextView
+        android:id="@+id/fromCurrencyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="CAD"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/fromCurrencyImageView"
+        app:layout_constraintTop_toTopOf="@+id/fromCurrencyImageView" />
+
+    <TextView
+        android:id="@+id/to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TO"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/toCurrencyText"
+        app:layout_constraintStart_toEndOf="@+id/fromCurrencyText"
+        app:layout_constraintTop_toTopOf="@+id/fromCurrencyText" />
+
+    <TextView
+        android:id="@+id/toCurrencyAmountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="5dp"
+        android:text="To Amount"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/toCurrencyImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toCurrencyAmountText"
+        app:srcCompat="@drawable/cad" />
+
+    <TextView
+        android:id="@+id/toCurrencyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="CAD"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/toCurrencyImageView"
+        app:layout_constraintTop_toTopOf="@+id/toCurrencyImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
