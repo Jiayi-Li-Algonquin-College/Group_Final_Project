@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Jiebo_Peng_currency.CurrencyConvertActivity">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/currencyToolbar"
@@ -14,21 +16,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/currency_title" />
 
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Jiebo_Peng_currency.CurrencyConvertActivity">
+
     <TextView
         android:id="@+id/from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:text="@string/from_currency"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currencyToolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/fromCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:entries="@array/currencyType"
         app:layout_constraintStart_toEndOf="@+id/from"
         app:layout_constraintTop_toTopOf="@+id/from" />
@@ -37,16 +50,18 @@
         android:id="@+id/to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:text="@string/to_currency"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/toCurrency"
-        app:layout_constraintStart_toEndOf="@+id/fromCurrency"
-        app:layout_constraintTop_toTopOf="@+id/fromCurrency" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/toCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="5dp"
         android:entries="@array/currencyType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/to" />
@@ -55,10 +70,11 @@
         android:id="@+id/enterAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="11dp"
         android:text="@string/input_amount"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currencyToolbar" />
+        app:layout_constraintTop_toTopOf="@+id/amountText" />
 
     <EditText
         android:id="@+id/amountText"
@@ -72,7 +88,7 @@
         android:text=""
         app:layout_constraintEnd_toStartOf="@+id/convertButton"
         app:layout_constraintStart_toEndOf="@+id/enterAmount"
-        app:layout_constraintTop_toBottomOf="@+id/currencyToolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/convertButton"
@@ -87,7 +103,8 @@
         android:id="@+id/convertedAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
         android:text="@string/converted_amount"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amountText" />
@@ -102,32 +119,32 @@
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
+        android:layout_width="112dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:text="@string/save_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/convertedAmount" />
+        app:layout_constraintStart_toStartOf="@+id/convertButton"
+        app:layout_constraintTop_toBottomOf="@+id/convertButton" />
 
     <Button
         android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/update_button"
-        app:layout_constraintStart_toEndOf="@+id/saveButton"
-        app:layout_constraintTop_toTopOf="@+id/saveButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/convertedAmount" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/updateButton"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</LinearLayout>
