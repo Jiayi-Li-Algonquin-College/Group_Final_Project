@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface CurrencyConvertDao {
     //delete
     @Delete //number of rows deleted, should be 1 if id matches
     int deleteConvert(CurrencyConvert cc);
+
+    @Update
+    void updateConvert(CurrencyConvert cc);
 }

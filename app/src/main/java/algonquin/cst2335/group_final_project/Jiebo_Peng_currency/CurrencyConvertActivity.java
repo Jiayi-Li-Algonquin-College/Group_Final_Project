@@ -41,13 +41,14 @@ import algonquin.cst2335.group_final_project.databinding.ActivityCurrencyConvert
 import algonquin.cst2335.group_final_project.databinding.OneCurrencyConvertBinding;
 
 public class CurrencyConvertActivity extends AppCompatActivity {
+    private final int INVALID_INDEX = -1;
 
     CurrencyConvertDao myDAO;
     ActivityCurrencyConvertBinding binding;
     CurrencyViewModel currencyViewModel;
     ArrayList<CurrencyConvert> currencyConverts;
 
-    int selectedPosition = -1;
+    int selectedPosition = INVALID_INDEX;
 
     private RecyclerView.Adapter myAdapter;
 
@@ -55,25 +56,38 @@ public class CurrencyConvertActivity extends AppCompatActivity {
 
     protected RequestQueue queue = null;
 
-    private void getCurrencyConvertResult(String amountText, String fromCurrency, String toCurrency) {
+    private void getCurrencyConvertResult(CurrencyConvert cc, int arrayIndex) {
         String stringURL = "https://api.getgeoapi.com/v2/currency/convert?format=json&from=" +
-                fromCurrency +
+                cc.fromCurrency +
                 "&to=" +
-                toCurrency +
+                cc.toCurrency +
                 "&amount=" +
-                amountText +
+                cc.fromAmount +
                 "&api_key=2ae0c02cd1f783b00ce904cb3e50aed618e03b77&format=json";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
                 response -> {
                     try {
                         JSONObject rates = response.getJSONObject("rates");
-                        JSONObject rates_to_currency = rates.getJSONObject(toCurrency);
-                        String rate_for_amount = rates_to_currency.getString("rate_for_amount");
+                        JSONObject rates_to_currency = rates.getJSONObject(cc.toCurrency);
+                        cc.toAmount = rates_to_currency.getString("rate_for_amount");
 
-                        runOnUiThread( (  )  -> {
-                            binding.convertedResult.setText(rate_for_amount);
-                        });
+                        if (arrayIndex == INVALID_INDEX ) {
+                            runOnUiThread( (  )  -> {
+                                binding.convertedResult.setText(cc.toAmount);
+                            });
+                        }
+                        else {
+                            Executor thread = Executors.newSingleThreadExecutor();
+                            thread.execute(() ->
+                            {
+                                myDAO.updateConvert(cc);
+                            });
+
+                            runOnUiThread( (  )  -> {
+                                myAdapter.notifyItemChanged(arrayIndex);
+                            });
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -147,7 +161,7 @@ public class CurrencyConvertActivity extends AppCompatActivity {
         }
         else if (item.getItemId() == R.id.item_delete) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            if (selectedPosition == -1) {
+            if (selectedPosition == INVALID_INDEX) {
                 builder.setTitle("Warning!");
                 builder.setMessage("Please select a item to delete!");
                 builder.setPositiveButton("OK", (dialog, which) -> {
@@ -178,7 +192,7 @@ public class CurrencyConvertActivity extends AppCompatActivity {
                             menuItem.setVisible(false);*/
 
                             // Reset to unselected value -1
-                            selectedPosition = -1;
+                            selectedPosition = INVALID_INDEX;
                         })
                         .create().show();
             }
@@ -203,14 +217,14 @@ public class CurrencyConvertActivity extends AppCompatActivity {
         Spinner fromCurrency = binding.fromCurrency;
         ArrayAdapter<String> adapter = (ArrayAdapter<String>) fromCurrency.getAdapter();
         int positionToSet = adapter.getPosition(savedFromCurrency);
-        if (positionToSet != -1) {
+        if (positionToSet != INVALID_INDEX) {
             fromCurrency.setSelection(positionToSet);
         }
         String savedToCurrency = prefs.getString("toCurrency", "CAD");
         Spinner toCurrency = binding.toCurrency;
         adapter = (ArrayAdapter<String>) toCurrency.getAdapter();
         positionToSet = adapter.getPosition(savedToCurrency);
-        if (positionToSet != -1) {
+        if (positionToSet != INVALID_INDEX) {
             toCurrency.setSelection(positionToSet);
         }
         String savedAmountText = prefs.getString("amountText", "");
@@ -234,26 +248,60 @@ public class CurrencyConvertActivity extends AppCompatActivity {
             });
         }
 
+        // Setup recycleView
+        binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recycleView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
+            @NonNull
+            @Override
+            public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                OneCurrencyConvertBinding binding = OneCurrencyConvertBinding.inflate(getLayoutInflater(),parent,false);
+                return new MyRowHolder(binding.getRoot());
+            }
+
+            @Override
+            public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
+                CurrencyConvert obj = currencyConverts.get(position);
+                holder.fromAmountText.setText(obj.getFromAmount());
+                holder.toAmountText.setText(obj.getToAmount());
+                holder.fromCurrencyText.setText(obj.getFromCurrency());
+                holder.toCurrencyText.setText(obj.getToCurrency());
+
+                int fromImg = getResources().getIdentifier(obj.getFromCurrency().toLowerCase(), "drawable", getPackageName());
+                holder.fromCurrencyImg.setImageResource(fromImg);
+                int toImg = getResources().getIdentifier(obj.getToCurrency().toLowerCase(), "drawable", getPackageName());
+                holder.toCurrencyImg.setImageResource(toImg);
+            }
+
+            @Override
+            public int getItemCount() {
+                return currencyConverts.size();
+            }
+
+            @Override
+            public int getItemViewType(int position) {
+                return 0;
+            }
+        });
+
+        // Setup Buttons listener function
         binding.convertButton.setOnClickListener(click -> {
             String amountInput = binding.amountText.getText().toString();
+            String fromCurrencyText = binding.fromCurrency.getSelectedItem().toString();
+            String toCurrencyText = binding.toCurrency.getSelectedItem().toString();
 
             if (!amountInput.isEmpty()) {
+                CurrencyConvert newCc = new CurrencyConvert(fromCurrencyText, toCurrencyText, amountInput, "");
 
-                getCurrencyConvertResult(binding.amountText.getText().toString(),
-                        binding.fromCurrency.getSelectedItem().toString(),
-                        binding.toCurrency.getSelectedItem().toString());
-
+                getCurrencyConvertResult(newCc, INVALID_INDEX);
 
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("fromCurrency", binding.fromCurrency.getSelectedItem().toString());
-                editor.putString("toCurrency", binding.toCurrency.getSelectedItem().toString());
-                editor.putString("amountText", binding.amountText.getText().toString());
+                editor.putString("fromCurrency", fromCurrencyText);
+                editor.putString("toCurrency", toCurrencyText);
+                editor.putString("amountText", amountInput);
                 editor.apply();
 
                 Toast.makeText(CurrencyConvertActivity.this,
-                        amountInput + " " + binding.fromCurrency.getSelectedItem().toString() +
-                                " convert to " +
-                                binding.toCurrency.getSelectedItem().toString() + " successfully",
+                        amountInput + " " + fromCurrencyText + " convert to " + toCurrencyText + " successfully",
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Handle the case where no input is provided
@@ -304,51 +352,14 @@ public class CurrencyConvertActivity extends AppCompatActivity {
                 });
                 builder.show();
             }
-
         });
 
         binding.updateButton.setOnClickListener(click -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Hello!");
-            builder.setMessage("Update function will be implemented!");
-            builder.setPositiveButton("OK", (dialog, which) -> {
-                // Dialog dismissed
-            });
-            builder.show();
-        });
-
-        binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
-        binding.recycleView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
-            @NonNull
-            @Override
-            public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                    OneCurrencyConvertBinding binding = OneCurrencyConvertBinding.inflate(getLayoutInflater(),parent,false);
-                    return new MyRowHolder(binding.getRoot());
+            for (int index = 0; index < currencyConverts.size(); index++) {
+                CurrencyConvert record = currencyConverts.get(index);
+                getCurrencyConvertResult(record, index);
             }
-
-            @Override
-            public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
-                CurrencyConvert obj = currencyConverts.get(position);
-                holder.fromAmountText.setText(obj.getFromAmount());
-                holder.toAmountText.setText(obj.getToAmount());
-                holder.fromCurrencyText.setText(obj.getFromCurrency());
-                holder.toCurrencyText.setText(obj.getToCurrency());
-
-                int fromImg = getResources().getIdentifier(obj.getFromCurrency().toLowerCase(), "drawable", getPackageName());
-                holder.fromCurrencyImg.setImageResource(fromImg);
-                int toImg = getResources().getIdentifier(obj.getToCurrency().toLowerCase(), "drawable", getPackageName());
-                holder.toCurrencyImg.setImageResource(toImg);
-            }
-
-            @Override
-            public int getItemCount() {
-                return currencyConverts.size();
-            }
-
-            @Override
-            public int getItemViewType(int position) {
-                return 0;
-            }
+            Snackbar.make(binding.getRoot(), "All saved currency converts updated!", Snackbar.LENGTH_LONG).show();
         });
     }
 }
