@@ -53,20 +53,21 @@ android.applicationVariants.all { variant ->
 //    implementation 'androidx.lifecycle:lifecycle-livedata:2.6.1'
 //    implementation 'androidx.lifecycle:lifecycle-common-java8:2.6.1'
 //    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-android.applicationVariants.all { variant ->
-    task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
-        description "Generates Javadoc for $variant.name."
 
-        source = variant.javaCompile.source
-        destinationDir = file("$rootDir/javadoc/")
-        failOnError false
-
-        doFirst {
-            ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-            classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
-            options.addStringOption "-show-members", "package"
-        }
-    }}
+//android.applicationVariants.all { variant ->
+//    task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
+//        description "Generates Javadoc for $variant.name."
+//
+//        source = variant.javaCompile.source
+//        destinationDir = file("$rootDir/javadoc/")
+//        failOnError false
+//
+//        doFirst {
+//            ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+//            classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+//            options.addStringOption "-show-members", "package"
+//        }
+//    }}
 dependencies {
     def room_version = "2.5.2"
     implementation "androidx.room:room-runtime:$room_version"
@@ -75,7 +76,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    implementation "androidx.recyclerview:recyclerview:1.3.1"
+    implementation "androidx.recyclerview:recyclerview:1.3.0"
     // For control over item selection of both touch and mouse driven selection
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 
@@ -89,6 +90,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'androidx.databinding:databinding-runtime:8.1.0'
+    implementation 'androidx.databinding:databinding-runtime:8.0.2'
     implementation 'com.android.volley:volley:1.2.1'
 }
