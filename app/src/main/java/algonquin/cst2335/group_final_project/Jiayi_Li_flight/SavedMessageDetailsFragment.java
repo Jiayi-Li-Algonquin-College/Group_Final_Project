@@ -17,13 +17,40 @@ import java.util.concurrent.Executors;
 
 
 import algonquin.cst2335.group_final_project.databinding.DetailsLayoutDeleteButtonBinding;
-
+/**
+ * A fragment that displays details of a selected saved chat message, including its content, timestamp,
+ * and database ID. Provides functionality for deleting the message with undo option.
+ */
 public class SavedMessageDetailsFragment  extends Fragment {
+    /**
+     * The selected chat message to display details for.
+     */
     ChatMessage selected;
+    /**
+     * The list of chat messages.
+     */
     ArrayList<ChatMessage> messages;
+    /**
+     * The position of the selected message in the list.
+     */
     public int postionTemp;
+    /**
+     * The RecyclerView adapter for the chat messages.
+     */
     public RecyclerView.Adapter myAdapter;
+    /**
+     * The DAO for performing database operations on chat messages.
+     */
     ChatMessageDAO mDAO;
+    /**
+     * Constructs a new instance of the SavedMessageDetailsFragment class.
+     *
+     * @param m The selected chat message to display details for.
+     * @param messages The list of chat messages.
+     * @param postionTemp The position of the selected message in the list.
+     * @param myAdapter The RecyclerView adapter for the chat messages.
+     * @param mDAO The DAO for performing database operations on chat messages.
+     */
     public SavedMessageDetailsFragment (ChatMessage m, ArrayList<ChatMessage> messages, int postionTemp, RecyclerView.Adapter myAdapter, ChatMessageDAO mDAO) {
 
         selected = m;
@@ -32,7 +59,15 @@ public class SavedMessageDetailsFragment  extends Fragment {
         this.myAdapter = myAdapter;
         this.mDAO = mDAO;
     }
-
+    /**
+     * Called when the fragment view is being created. Inflates the view, displays details of
+     * the selected chat message, and provides functionality for deleting the message with undo option.
+     *
+     * @param inflater The LayoutInflater used to inflate the view.
+     * @param container The parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState A Bundle containing the saved state of the fragment, if any.
+     * @return The inflated view containing the chat message details.
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         DetailsLayoutDeleteButtonBinding binding = DetailsLayoutDeleteButtonBinding.inflate(inflater);

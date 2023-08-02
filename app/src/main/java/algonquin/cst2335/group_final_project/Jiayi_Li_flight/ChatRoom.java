@@ -1,4 +1,8 @@
+/**
+ * Represents a chat room activity where users can send and receive messages.
+ */
 package algonquin.cst2335.group_final_project.Jiayi_Li_flight;
+
 
 
 import androidx.annotation.NonNull;
@@ -40,23 +44,59 @@ import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityChatRoomBinding;
 import algonquin.cst2335.group_final_project.databinding.ReceiveMessageBinding;
 import algonquin.cst2335.group_final_project.databinding.SentMessageBinding;
-
+/**
+ * Represents a chat room activity where users can send and receive messages.
+ */
 public class ChatRoom extends AppCompatActivity {
 
 
-
+    /**
+     * The binding for the activity's layout.
+     */
     public ActivityChatRoomBinding binding;
+    /**
+     * The list of chat messages.
+     */
     public ArrayList<ChatMessage> messages = new ArrayList<>();
+    /**
+     * The ViewModel for managing chat room data.
+     */
     public ChatRoomViewModel chatModel ;
+    /**
+     * The RecyclerView adapter for displaying chat messages.
+     */
     public RecyclerView.Adapter myAdapter;
+    /**
+     * Shared preferences for storing user data.
+     */
     SharedPreferences prefs;
+    /**
+     * Temporary variable to store the position of a selected message.
+     */
     public int postionTemp;
+    /**
+     * The currently selected chat message.
+     */
     public ChatMessage selected;
+    /**
+     * The request queue for making API requests.
+     */
     protected RequestQueue queue;
+    /**
+     * The base URL for the flight API.
+     */
     public String stringURL;
+    /**
+     * The airport code for flight status lookup.
+     */
     String airportCode;
 
-
+    /**
+     * Called when the activity is first created. Initializes the chat room activity,
+     * including setting up the UI, handling button clicks, and observing changes in ViewModel.
+     *
+     * @param savedInstanceState A Bundle containing the saved state of the activity, if any.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -255,7 +295,11 @@ public class ChatRoom extends AppCompatActivity {
         });
 
     }
-
+    /**
+     * Called when the activity is becoming visible to the user. Loads and displays the user's
+     * search history from shared preferences, ensuring the input field is populated with the
+     * last entered search query.
+     */
     @Override
     public void onStart(){
         super.onStart();
@@ -263,15 +307,32 @@ public class ChatRoom extends AppCompatActivity {
         String searchHistory = prefs.getString("searchHistory", "");
         binding.textInput.setText(searchHistory);
     }
-
+    /**
+     * Called when the activity is resumed from a paused state. Performs any necessary actions
+     * to resume the activity's functionality, such as refreshing the UI or updating data.
+     */
     @Override
     public void onResume() {
         super.onResume();
     }
-
+    /**
+     * ViewHolder class for displaying individual chat message rows in the RecyclerView.
+     * Responsible for binding the UI elements and handling item click events.
+     */
     public class MyRowHolder extends RecyclerView.ViewHolder {
+        /**
+         * TextView for displaying the message content.
+         */
         TextView messageText;
+        /**
+         * TextView for displaying the timestamp of the message.
+         */
         TextView timeText;
+        /**
+         * Constructs a new instance of the MyRowHolder class.
+         *
+         * @param itemView The root view of the individual chat message row.
+         */
         public MyRowHolder( View itemView) {
             super(itemView);
 
