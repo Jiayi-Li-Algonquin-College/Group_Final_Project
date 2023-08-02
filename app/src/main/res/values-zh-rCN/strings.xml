@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="app_name">琐事答题游戏！</string>
+    <string name="welcome">欢迎，</string>
+    <string name="quiz">答题题目</string>
+    <string name="calculate_score">计算分数</string>
+    <string name="name_hint">输入你的名字</string>
+    <string name="star_quiz">开始答题</string>
+    <string name="high_score">查看分数排名</string>
+    <string name="topic_hint">输入类型</string>
     <string name="app_name">Trivia Question Game!</string>
     <string name="combine_app_name">CST2335小组项目</string>
     <string name="currency_title">汇率换算器</string>
@@ -12,4 +21,5 @@
     <string name="to_currency">到</string>
     <string name="converted_amount">换算结果</string>
     <string name="delete_button">删除</string>
+
 </resources>
