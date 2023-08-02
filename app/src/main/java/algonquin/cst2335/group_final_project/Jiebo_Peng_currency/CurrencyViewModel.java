@@ -6,5 +6,5 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 
 public class CurrencyViewModel extends ViewModel {
-    public MutableLiveData<ArrayList<OneCurrencyConvert>> currencyConverts = new MutableLiveData< >();
+    public MutableLiveData<ArrayList<CurrencyConvert>> currencyConverts = new MutableLiveData< >();
 }
