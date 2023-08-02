@@ -15,7 +15,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="algonquin.cst2335.group_final_project.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"

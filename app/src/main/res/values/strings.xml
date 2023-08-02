@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Trivia Question Game!</string>
+    <string name="welcome">Welcome, </string>
+    <string name="quiz">Quiz Questions</string>
+    <string name="calculate_score">Calculate Score</string>
+    <string name="name_hint">Enter your name</string>
+    <string name="star_quiz">Start Quiz</string>
+    <string name="high_score">View High Scores</string>
+    <string name="topic_hint">Enter the topic</string>
 </resources>

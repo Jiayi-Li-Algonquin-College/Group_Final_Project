@@ -7,4 +7,16 @@
         <item>HKD</item>
         <item>EUR</item>
     </string-array>
+    <string-array name="topic_options">
+        <item>Any Category</item>
+        <item>General Knowledge</item>
+        <item>Entertainment: Video Games</item>
+        <item>Science: Computers</item>
+        <item>Sports</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Politics</item>
+        <item>Vehicles</item>
+        <item>Animals</item>
+    </string-array>
 </resources>
