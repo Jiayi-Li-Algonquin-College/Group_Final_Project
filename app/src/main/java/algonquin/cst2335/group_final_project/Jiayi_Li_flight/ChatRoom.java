@@ -169,55 +169,52 @@ public class ChatRoom extends AppCompatActivity {
             String currentDateandTime = sdf.format(new Date());
 
 
-            airportCode = binding.textInput.getText().toString();
+//            airportCode = binding.textInput.getText().toString();
+//
+//
+//            stringURL = "http://api.aviationstack.com/v1/flights?access_key=49303af5d63fb4780a6467075b9d721b&dep_iata=" + airportCode;
+//
+//            queue = Volley.newRequestQueue(this);
+//            JsonObjectRequest request = new JsonObjectRequest(
+//                    Request.Method.GET,
+//                    stringURL,
+//                    null,
+//                    response -> {
+//                        try {
+//                            JSONArray dataArray = response.getJSONArray("data");
+//                            JSONObject position0 = dataArray.getJSONObject(0);
+//
+//                            String flight_status = position0.getString("flight_status");
+//
+//                            runOnUiThread(() -> {
+//                                Toast.makeText(ChatRoom.this, flight_status, Toast.LENGTH_SHORT).show();
+//                                ChatMessage chatMessage = new ChatMessage(flight_status, currentDateandTime, true);
+//                                messages.add(chatMessage);
+//                                myAdapter.notifyDataSetChanged();
+//                                binding.textInput.setText("");
+//                                    });
+//
+//                        } catch (JSONException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                    },
+//                    error -> {
+//                        Toast.makeText(ChatRoom.this, "Error retrieving data", Toast.LENGTH_SHORT).show();
+//                    });
+//            queue.add(request);
 
 
-            stringURL = "http://api.aviationstack.com/v1/flights?access_key=49303af5d63fb4780a6467075b9d721b&dep_iata=" + airportCode;
 
-            queue = Volley.newRequestQueue(this);
-            JsonObjectRequest request = new JsonObjectRequest(
-                    Request.Method.GET,
-                    stringURL,
-                    null,
-                    response -> {
-                        try {
-                            JSONArray dataArray = response.getJSONArray("data");
-                            JSONObject position0 = dataArray.getJSONObject(0);
+            ChatMessage chatMessage = new ChatMessage(message, currentDateandTime, true);
+//            Executor thread = Executors.newSingleThreadExecutor();
+//            thread.execute(() ->
+//            {
+//                mDAO.insertMessage(chatMessage);
+//            });
 
-                            String flight_status = position0.getString("flight_status");
-
-                            runOnUiThread(() -> {
-                                Toast.makeText(ChatRoom.this, flight_status, Toast.LENGTH_SHORT).show();
-                                ChatMessage chatMessage = new ChatMessage(flight_status, currentDateandTime, true);
-                                messages.add(chatMessage);
-                                myAdapter.notifyDataSetChanged();
-                                binding.textInput.setText("");
-                                    });
-
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-                    },
-                    error -> {
-                        Toast.makeText(ChatRoom.this, "Error retrieving data", Toast.LENGTH_SHORT).show();
-                    });
-            queue.add(request);
-
-
-
-//            ChatM988essage chatMessage = new ChatMessage(airportCode, currentDateandTime, true);
-            /*------------------------------------------------------------------
-            Executor thread = Executors.newSingleThreadExecutor();
-            thread.execute(() ->
-            {
-                mDAO.insertMessage(chatMessage);
-            });55
-            */
-            //------------------------------------------------------------------
-
-//            messages.add(chatMessage);
-//            myAdapter.notifyDataSetChanged();
-//            binding.textInput.setText("");
+            messages.add(chatMessage);
+            myAdapter.notifyDataSetChanged();
+            binding.textInput.setText("");
         });
 
         binding.receiveButton.setOnClickListener(click -> {
