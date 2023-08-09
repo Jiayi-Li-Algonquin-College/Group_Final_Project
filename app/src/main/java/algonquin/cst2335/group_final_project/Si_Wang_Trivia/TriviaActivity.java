@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -72,7 +74,24 @@ public class TriviaActivity extends AppCompatActivity {
     private void showHelpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Help");
-        builder.setMessage("This is Si Wang's Final Project! Have fun and enjoy the game!");
+        builder.setMessage("Objective:\n" +
+                "Have fun and test your knowledge with a quick trivia quiz!\n" +
+                "\n" +
+                "Instructions:\n" +
+                "\n" +
+                "Gather: Get everyone together in a comfortable space.\n" +
+                "\n" +
+                "Ask Questions: I'll ask a series of questions one by one.\n" +
+                "\n" +
+                "Answer: Write down your answers on a piece of paper.\n" +
+                "\n" +
+                "Reveal Answers: After each question, I'll share the correct answer.\n" +
+                "\n" +
+                "Score: Keep track of how many you get right.\n" +
+                "\n" +
+                "Winning: The person with the most correct answers wins.\n" +
+                "\n" +
+                "Enjoy: Have a great time sharing what you know!");
         builder.setPositiveButton("OK", (dialog, which) -> {
             // Dialog dismissed
         });
@@ -200,14 +219,21 @@ public class TriviaActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete Score")
                 .setMessage("Are you sure you want to delete the score for " + score.getName() + "?")
-                .setPositiveButton("Delete", (dialog, which) -> {
+                .setPositiveButton("Yes", (dialog, which) -> {
                     // Delete the score from the database
                     deleteScore(score);
+                    // Show a Snackbar to indicate deletion
+                    showDeletionSnackbar(score.getName());
                 })
-                .setNegativeButton("Cancel", (dialog, which) -> {
+                .setNegativeButton("No", (dialog, which) -> {
                     // Cancel deletion
                 })
                 .show();
+    }
+    private void showDeletionSnackbar(String scoreName) {
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+                "Score for " + scoreName + " deleted", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
     /**
      * Deletes a score from the database and updates the leaderboard.
