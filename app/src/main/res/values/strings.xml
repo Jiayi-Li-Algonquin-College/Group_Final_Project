@@ -3,4 +3,7 @@
     <string name="bear_help">Help</string>
     <string name="bear_help_title">How to use Bear Image</string>
     <string name="bear_help_message">1. Type width and height 2. Click "Generate" button to show image 3. Click the image to delete or save to database 4. Click "Go to View Image" to see all images saved</string>
+    <string name="trivia_item">Go to Trivia</string>
+    <string name="currency_item">Go to Curerncy</string>
+    <string name="flight_item">Go to Flight</string>
 </resources>
