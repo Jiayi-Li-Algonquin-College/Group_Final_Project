@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/app_title"
+        android:title="Ying's Bear Image Generator"
+        app:showAsAction="always"
+        app:actionLayout="@layout/bear_menu_title" />
+    <item
+        android:id="@+id/bear_help"
+        android:icon="@drawable/bear_help"
+        android:title="@string/bear_help_title"
+        app:showAsAction="always" />
+
+    <!--    <item-->
+    <!--        android:id="@+id/trivia_item"-->
+    <!--        android:icon="@drawable/trivia"-->
+    <!--        android:title="@string/bear_help_title"-->
+    <!--        app:showAsAction="never" />-->
+
+    <!--    <item-->
+    <!--        android:id="@+id/currency_item"-->
+    <!--        android:icon="@drawable/currency_item"-->
+    <!--        android:title="@string/currency_item"-->
+    <!--        app:showAsAction="never" />-->
+
+    <!--    <item-->
+    <!--        android:id="@+id/flight_item"-->
+    <!--        android:icon="@drawable/flight_item"-->
+    <!--        android:title="@string/flight_item"-->
+    <!--        app:showAsAction="never" />-->
+</menu>
