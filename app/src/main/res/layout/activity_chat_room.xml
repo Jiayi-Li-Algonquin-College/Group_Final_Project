@@ -33,14 +33,14 @@
                 android:id="@+id/sendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SEND"
+                android:text="@string/flight_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"></Button>
 
             <EditText
                 android:id="@+id/textInput"
-                android:layout_width="302dp"
-                android:layout_height="48dp"
+                android:layout_width="259dp"
+                android:layout_height="43dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/sendButton"
                 app:layout_constraintTop_toTopOf="@+id/sendButton"></EditText>
@@ -61,10 +61,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
-                android:text="Show List"
+                android:text="@string/flight_show_list"
                 app:layout_constraintBottom_toTopOf="@+id/sendButton"
                 app:layout_constraintStart_toStartOf="parent" />
 
+            <Button
+                android:id="@+id/help_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="584dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/flight_help"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
