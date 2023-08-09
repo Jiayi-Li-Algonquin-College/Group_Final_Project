@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">琐事答题游戏！</string>
+    <string name="app_name">终极项目</string>
     <string name="welcome">欢迎，</string>
     <string name="quiz">答题题目</string>
     <string name="calculate_score">计算分数</string>

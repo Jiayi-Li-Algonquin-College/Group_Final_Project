@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Trivia Question Game!</string>
+    <string name="app_name">Final Project</string>
     <string name="welcome">Welcome, </string>
     <string name="quiz">Quiz Questions</string>
     <string name="calculate_score">Calculate Score</string>
