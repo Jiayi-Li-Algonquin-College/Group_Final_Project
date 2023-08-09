@@ -26,4 +26,8 @@
     <string name="flight_delete">delete</string>
     <string name="flight_save_toast">You just clicked the save button!</string>
     <!--Jiayi Li's Flight-->
+    <string name="bear_help">Help</string>
+    <string name="bear_help_title">How to use Bear Image</string>
+    <string name="bear_help_message">1. Type width and height 2. Click "Generate" button to show image 3. Click the image to delete or save to database 4. Click "Go to View Image" to see all images saved</string>
+
 </resources>
