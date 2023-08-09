@@ -39,23 +39,36 @@ import java.util.concurrent.Executors;
 import algonquin.cst2335.group_final_project.R;
 import algonquin.cst2335.group_final_project.databinding.ActivityCurrencyConvertBinding;
 import algonquin.cst2335.group_final_project.databinding.OneCurrencyConvertBinding;
-
+/**
+ * This class represents the Currency Convert Activity, which allows users to convert currencies.
+ */
 public class CurrencyConvertActivity extends AppCompatActivity {
+    /** Assgined -1 to constant INVALID_INDEX */
     private final int INVALID_INDEX = -1;
-
+    /** the reference of the object with CurrencyConvertDao */
     CurrencyConvertDao myDAO;
+    /** the reference of the object with ActivityCurrencyConvertBinding used to bing id */
     ActivityCurrencyConvertBinding binding;
+    /** the reference of the object with CurrencyViewModel */
     CurrencyViewModel currencyViewModel;
+    /** the ArrayList of currency convert objects */
     ArrayList<CurrencyConvert> currencyConverts;
-
+    /** selected position */
     int selectedPosition = INVALID_INDEX;
-
+    /** the reference of the object with RecyclerView.Adapter that related date with RecyclerView */
     private RecyclerView.Adapter myAdapter;
 
     //private Menu mMenu;
-
+    /**The RequestQueue used for handling network requests in this activity. */
     protected RequestQueue queue = null;
 
+    /**
+     * Gets the currency conversion result for the given CurrencyConvert object.
+     * This method sends a network request to a currency conversion API and updates the CurrencyConvert
+     * object with the conversion result.
+     * @param cc The CurrencyConvert object containing the currency conversion details.
+     * @param arrayIndex The array index of the CurrencyConvert object in the list (or INVALID_INDEX if not applicable).
+     */
     private void getCurrencyConvertResult(CurrencyConvert cc, int arrayIndex) {
         String stringURL = "https://api.getgeoapi.com/v2/currency/convert?format=json&from=" +
                 cc.fromCurrency +
@@ -71,12 +84,13 @@ public class CurrencyConvertActivity extends AppCompatActivity {
                         JSONObject rates = response.getJSONObject("rates");
                         JSONObject rates_to_currency = rates.getJSONObject(cc.toCurrency);
                         cc.toAmount = rates_to_currency.getString("rate_for_amount");
-
+                        // when you click convert button
                         if (arrayIndex == INVALID_INDEX ) {
                             runOnUiThread( (  )  -> {
                                 binding.convertedResult.setText(cc.toAmount);
                             });
                         }
+                        // when you click update button
                         else {
                             Executor thread = Executors.newSingleThreadExecutor();
                             thread.execute(() ->
@@ -98,15 +112,27 @@ public class CurrencyConvertActivity extends AppCompatActivity {
 
         queue.add(request);
     }
-
+    /**
+     * ViewHolder class used in the RecyclerView to display currency conversion data.
+     * This class holds references to the views for a single row in the RecyclerView.
+     */
     class MyRowHolder extends RecyclerView.ViewHolder {
+        /**the currency need to be converted */
         TextView fromAmountText;
+        /**the amount of converted currency*/
         TextView toAmountText;
+        /**the amount of currency need to be converted*/
         TextView fromCurrencyText;
+        /**the converted currency*/
         TextView toCurrencyText;
+        /**the image of currency need to be converted */
         ImageView fromCurrencyImg;
+        /**the image of converted currency*/
         ImageView toCurrencyImg;
-
+        /**
+         * Constructs a new MyRowHolder with the provided itemView.
+         * @param itemView The View representing a single row in the RecyclerView.
+         */
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
             fromAmountText = itemView.findViewById(R.id.fromCurrencyAmountText);
@@ -132,7 +158,12 @@ public class CurrencyConvertActivity extends AppCompatActivity {
             });
         }
     }
-
+    /**
+     * Initialize the contents of the Activity's options menu.
+     * This method is called during the creation of the menu to populate it with items.
+     * @param menu The options menu in which you place your items.
+     * @return true to display the menu; false to prevent it from being displayed.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -142,7 +173,11 @@ public class CurrencyConvertActivity extends AppCompatActivity {
 
         return true;
     }
-
+    /**
+     * Handles the options menu item selection.
+     * @param item The selected MenuItem.
+     * @return true if the event was handled successfully; false otherwise.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -200,7 +235,10 @@ public class CurrencyConvertActivity extends AppCompatActivity {
 
         return true;
     }
-
+    /**
+     * This method is called when the activity is created. It sets up the layout, views, adapters, and click listeners.
+     * @param savedInstanceState The saved instance state bundle.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
