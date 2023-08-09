@@ -19,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -40,7 +38,7 @@ public class TriviaActivity extends AppCompatActivity {
     String selectedTopic;
     private LeaderboardAdapter leaderboardAdapter;
 
-    private List<Score> leaderboardData = new ArrayList<Score>();
+    private List<Score> leaderboardData = new ArrayList<>();
 
     private Executor thread;
 
